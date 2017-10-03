@@ -1,4 +1,5 @@
 export interface IGlobalState {
-    list: string[];
+	list: string[];
+	findedItems: string[];
     searchValue: string;
 }

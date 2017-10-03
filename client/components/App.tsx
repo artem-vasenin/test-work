@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { IGlobalState } from '../models';
+import Search from './Search';
+import List from './List';
 
 interface IProps {
 
@@ -14,6 +16,7 @@ export default class App extends React.Component<IProps, IState> {
 		super(props);
 		this.state = {
 			list: [],
+			findedItems: [],
 			searchValue: ''
 		}
 	}
@@ -21,7 +24,9 @@ export default class App extends React.Component<IProps, IState> {
 	render() {
 		return (
 			<div>
-				<h1>Проверка</h1>
+				<h1>Поиск пользователей</h1>
+				<Search />
+				<List />
 			</div>
 		);
 	}
