@@ -5,13 +5,14 @@ import {IGlobalState} from '../models';
 import Input from './Input';
 
 interface IProps {
-
+	searchValue: string;
+	search: (text: string) => void;
 }
 
 interface IState {
-	list: string[];
-	findedItems: string[];
 	searchValue: string;
+	findedItems: string[];
+	list: string[];
 }
 
 class Search extends React.Component<IProps, IState> {
@@ -22,6 +23,13 @@ class Search extends React.Component<IProps, IState> {
 			findedItems: [],
 			searchValue: ''
 		}
+	}
+
+	componentWillReceiveProps(newProps) {
+		this.setState({
+			searchValue: newProps.searchValue,
+			findedItems: newProps.findedItems
+		});
 	}
 
 	render() {
