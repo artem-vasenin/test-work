@@ -1,17 +1,17 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
 import { IGlobalState } from '../models';
 import Search from './Search';
 import List from './List';
 
-interface IProps {
-
+interface IProps { 
+	list: string[];
+	searchValue: string;
+	findedItems: string[];
 }
+interface IState { }
 
-interface IState {
-
-}
-
-export default class App extends React.Component<IProps, IState> {
+class App extends React.Component<IProps, IState> {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -31,3 +31,13 @@ export default class App extends React.Component<IProps, IState> {
 		);
 	}
 }
+
+const mapStateToProps = (state: IGlobalState) => {
+    return {
+		list: state.list,
+		searchValue: state.searchValue,
+		findedItems: state.findedItems
+    };
+}
+
+export default connect(mapStateToProps)(App);

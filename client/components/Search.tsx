@@ -6,7 +6,7 @@ import Input from './Input';
 
 interface IProps {
 	searchValue: string;
-	search: (text: string) => void;
+	search: (listItems: string[]) => void;
 }
 
 interface IState {
@@ -48,8 +48,8 @@ const mapStateToProps = (state: IGlobalState) => {
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        search: (text: string) => {
-            dispatch(search(text));
+        search: (listItems: string[]) => {
+            dispatch(search(listItems));
         }
     };
 }

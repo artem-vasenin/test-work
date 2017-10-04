@@ -5,7 +5,7 @@ import {IGlobalState} from '../models';
 
 interface IProps {
 	searchValue: string;
-	input: (text: string) => void;
+	onChange: (text: string) => void;
 }
 
 interface IState {
@@ -28,12 +28,8 @@ class Input extends React.Component<IProps, IState> {
 
 	handleInputChange = (e) => {
 		const value = e.target.value;
-		
-		this.props.input(value);
-		
-		this.setState({
-			searchValue: value
-		});
+		this.setState({searchValue: value});
+		this.props.onChange(value);
 	}
 
 	render() {
@@ -43,6 +39,7 @@ class Input extends React.Component<IProps, IState> {
 				value={this.state.searchValue ? this.state.searchValue : ''}
 				placeholder='Введите искомое имя'
 				onChange={this.handleInputChange}
+				autoFocus
 			/>
 		);
 	}
@@ -55,8 +52,8 @@ const mapStateToProps = (state: IGlobalState) => {
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        input: (text: string) => {
-            dispatch(input(text));
+        onChange: (value: string) => {
+            dispatch(input(value));
         }
     };
 }

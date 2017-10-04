@@ -21,6 +21,14 @@ class List extends React.Component<IProps, IState> {
 		}
 	}
 
+	componentWillReceiveProps(newProps) {
+		// const newState: IGlobalState = {...this.props.state};
+		// this.setState({
+		// 	searchValue: newProps.searchValue,
+
+		// });
+	}
+
 	render() {
 		return (
 			<Item />
