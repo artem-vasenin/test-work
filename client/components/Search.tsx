@@ -6,7 +6,7 @@ import Input from './Input';
 
 interface IProps {
 	searchValue: string;
-	search: (listItems: string[]) => void;
+	search: (value: string) => void;
 }
 
 interface IState {
@@ -23,6 +23,8 @@ class Search extends React.Component<IProps, IState> {
 			findedItems: [],
 			searchValue: ''
 		}
+		
+		console.log(this.state);
 	}
 
 	componentWillReceiveProps(newProps) {
@@ -48,8 +50,8 @@ const mapStateToProps = (state: IGlobalState) => {
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        search: (listItems: string[]) => {
-            dispatch(search(listItems));
+        search: (value: string) => {
+            dispatch(search(value));
         }
     };
 }

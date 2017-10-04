@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IGlobalState } from '../models';
 
 interface IProps {
-
+	item: string;
 }
 
 interface IState {
@@ -19,7 +19,7 @@ export default class Item extends React.Component<IProps, IState> {
 
 	render() {
 		return (
-			<div>Item</div>
+			<div>{this.props.item}</div>
 		);
 	}
 }

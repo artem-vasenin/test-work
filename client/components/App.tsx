@@ -5,19 +5,20 @@ import Search from './Search';
 import List from './List';
 
 interface IProps { 
+}
+interface IState {
 	list: string[];
 	searchValue: string;
 	findedItems: string[];
 }
-interface IState { }
 
-class App extends React.Component<IProps, IState> {
+export default class App extends React.Component<IProps, IState> {
 	constructor(props){
 		super(props);
 		this.state = {
 			list: [],
-			findedItems: [],
-			searchValue: ''
+			searchValue: '',
+			findedItems: []
 		}
 	}
 
@@ -31,13 +32,3 @@ class App extends React.Component<IProps, IState> {
 		);
 	}
 }
-
-const mapStateToProps = (state: IGlobalState) => {
-    return {
-		list: state.list,
-		searchValue: state.searchValue,
-		findedItems: state.findedItems
-    };
-}
-
-export default connect(mapStateToProps)(App);

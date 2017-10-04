@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {input} from '../actions/actions';
+import {input, search} from '../actions/actions';
 import {IGlobalState} from '../models';
 
 interface IProps {
@@ -21,6 +21,7 @@ class Input extends React.Component<IProps, IState> {
 	}
 
 	componentWillReceiveProps(newProps) {
+		console.log(newProps);
 		this.setState({
 			searchValue: newProps.searchValue
 		});
@@ -53,7 +54,7 @@ const mapStateToProps = (state: IGlobalState) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onChange: (value: string) => {
-            dispatch(input(value));
+            dispatch(search(value));
         }
     };
 }

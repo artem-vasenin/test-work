@@ -5,40 +5,45 @@ import Item from './Item';
 
 interface IProps {
 	searchValue: string;
+	findedItems: string[];
 }
 
 interface IState {
-	findedItems: string[];
 	searchValue: string;
+	findedItems: string[];
 }
 
 class List extends React.Component<IProps, IState> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			findedItems: [],
-			searchValue: ''
+			searchValue: this.props.searchValue,
+			findedItems: this.props.findedItems
 		}
 	}
 
 	componentWillReceiveProps(newProps) {
 		// const newState: IGlobalState = {...this.props.state};
-		// this.setState({
-		// 	searchValue: newProps.searchValue,
-
-		// });
+		this.setState({
+			searchValue: newProps.searchValue,
+			findedItems: newProps.findedItems
+		});
 	}
 
 	render() {
 		return (
-			<Item />
+			<div>
+			{this.props.findedItems.map((item: string, index: number) => (
+				<Item key={index} item={item} />
+			))}
+			</div>
 		);
 	}
 }
 
 const mapStateToProps = (state: IGlobalState) => {
     return {
-		searchValue: state.searchValue
+		findedItems: state.findedItems
     };
 }
 

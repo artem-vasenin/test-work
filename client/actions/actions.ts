@@ -1,13 +1,13 @@
 export function input(value: string) {
 	return {
-		type: input,
+		type: 'input',
 		value: value
 	};
 }
 
-export function search(listItems: string[]) {
+export function search(value: string) {
 	return {
-		type: search,
-		listItems: listItems
+		type: 'search',
+		value: value
 	};
 }
