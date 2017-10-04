@@ -39,7 +39,7 @@ export default function reducer(state: IGlobalState = initialState, action: any)
 		case 'input': newState.searchValue = action.value; break;
 		case 'search': 
 		newState.findedItems = newState.list.filter((element) => {
-				return element.toLowerCase().indexOf(action.value.toLowerCase()) >= 0;
+				return action.value !== '' && element.toLowerCase().indexOf(action.value.toLowerCase()) >= 0;
 			});
 		break;
 		default: return state;
