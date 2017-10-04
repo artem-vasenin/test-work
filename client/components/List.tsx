@@ -24,7 +24,6 @@ class List extends React.Component<IProps, IState> {
 	}
 
 	componentWillReceiveProps(newProps) {
-		// const newState: IGlobalState = {...this.props.state};
 		this.setState({
 			searchValue: newProps.searchValue,
 			findedItems: newProps.findedItems
@@ -33,16 +32,15 @@ class List extends React.Component<IProps, IState> {
 
 	render() {
 		return (
-			<div className='block-items'>
-				{ 
-					this.props.isLoading && <h1>ЗАГРУЗКА</h1>
-				}
-				{
-					!this.props.isLoading && this.props.findedItems.map((item: string, index: number) => (
+			<div className={`block-items${!this.props.findedItems.length && !this.props.isLoading ? ' block-items--empty' : ''}`}>
+				{this.props.isLoading && <div className='load'>загрузка...</div>}
 					<ul className='list'>
-						<Item key={index} item={item} />
+						{
+						!this.props.isLoading && this.props.findedItems.map((item: string, index: number) => (
+
+							<Item key={index} item={item} />
+						))}
 					</ul>
-				))}
 			</div>
 		);
 	}
