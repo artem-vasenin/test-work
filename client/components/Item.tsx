@@ -19,7 +19,7 @@ export default class Item extends React.Component<IProps, IState> {
 
 	render() {
 		return (
-			<div>{this.props.item}</div>
+			<li className='list__item'>{this.props.item}</li>
 		);
 	}
 }

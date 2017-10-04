@@ -36,7 +36,7 @@ class Search extends React.Component<IProps, IState> {
 
 	render() {
 		return (
-			<form>
+			<form className='search'>
 				<Input />
 			</form>
 		);

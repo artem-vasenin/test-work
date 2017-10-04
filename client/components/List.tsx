@@ -33,14 +33,16 @@ class List extends React.Component<IProps, IState> {
 
 	render() {
 		return (
-			<div>
+			<div className='block-items'>
 				{ 
 					this.props.isLoading && <h1>ЗАГРУЗКА</h1>
 				}
-			{
-				!this.props.isLoading && this.props.findedItems.map((item: string, index: number) => (
-				<Item key={index} item={item} />
-			))}
+				{
+					!this.props.isLoading && this.props.findedItems.map((item: string, index: number) => (
+					<ul className='list'>
+						<Item key={index} item={item} />
+					</ul>
+				))}
 			</div>
 		);
 	}

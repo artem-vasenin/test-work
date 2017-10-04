@@ -5,7 +5,6 @@ import {IGlobalState} from '../models';
 
 interface IProps {
 	searchValue: string;
-	// getList: (text: string) => void;
 	onChange: (text: string) => void;
 }
 
@@ -31,13 +30,13 @@ class Input extends React.Component<IProps, IState> {
 	handleInputChange = (e) => {
 		const value = e.target.value;
 		this.setState({searchValue: value});
-		// this.props.getList(value);
 		this.props.onChange(value);
 	}
 
 	render() {
 		return (
 			<input 
+				className='search__field'
 				type='text'
 				value={this.state.searchValue ? this.state.searchValue : ''}
 				placeholder='Введите искомое имя'
@@ -56,7 +55,6 @@ const mapStateToProps = (state: IGlobalState) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onChange: (value: string) => {
-            // dispatch(search(value));
             dispatch(getList(value));
         }
     };
