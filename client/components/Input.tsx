@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {input, search} from '../actions/actions';
+import {input, search, getList} from '../actions/actions';
 import {IGlobalState} from '../models';
 
 interface IProps {
 	searchValue: string;
+	// getList: (text: string) => void;
 	onChange: (text: string) => void;
 }
 
@@ -30,6 +31,7 @@ class Input extends React.Component<IProps, IState> {
 	handleInputChange = (e) => {
 		const value = e.target.value;
 		this.setState({searchValue: value});
+		// this.props.getList(value);
 		this.props.onChange(value);
 	}
 
@@ -54,7 +56,8 @@ const mapStateToProps = (state: IGlobalState) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onChange: (value: string) => {
-            dispatch(search(value));
+            // dispatch(search(value));
+            dispatch(getList(value));
         }
     };
 }

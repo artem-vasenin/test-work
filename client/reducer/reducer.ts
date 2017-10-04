@@ -29,7 +29,8 @@ const initialState = {
       'Данил Станиславович'
     ],
       findedItems: [],
-      searchValue: ''
+      searchValue: '',
+      isLoading: false
   };
 
 export default function reducer(state: IGlobalState = initialState, action: any) {
@@ -38,9 +39,18 @@ export default function reducer(state: IGlobalState = initialState, action: any)
 	switch (action.type) {
 		case 'input': newState.searchValue = action.value; break;
 		case 'search': 
-		newState.findedItems = newState.list.filter((element) => {
+			newState.findedItems = newState.list.filter((element) => {
 				return action.value !== '' && element.toLowerCase().indexOf(action.value.toLowerCase()) >= 0;
 			});
+    break;
+    case 'getList_BEGIN':
+      newState.isLoading = true;
+    break;
+		case 'getList_SUCCESS': 
+			newState.findedItems = newState.list.filter((element) => {
+				return action.value !== '' && element.toLowerCase().indexOf(action.value.toLowerCase()) >= 0;
+      });
+      newState.isLoading = false;
 		break;
 		default: return state;
 	}

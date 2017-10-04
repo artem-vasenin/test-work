@@ -1,5 +1,6 @@
 export interface IGlobalState {
 	list: string[];
 	findedItems: string[];
-    searchValue: string;
+	searchValue: string;
+	isLoading: boolean;
 }

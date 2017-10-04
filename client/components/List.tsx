@@ -6,6 +6,7 @@ import Item from './Item';
 interface IProps {
 	searchValue: string;
 	findedItems: string[];
+	isLoading: boolean;
 }
 
 interface IState {
@@ -33,7 +34,11 @@ class List extends React.Component<IProps, IState> {
 	render() {
 		return (
 			<div>
-			{this.props.findedItems.map((item: string, index: number) => (
+				{ 
+					this.props.isLoading && <h1>ЗАГРУЗКА</h1>
+				}
+			{
+				!this.props.isLoading && this.props.findedItems.map((item: string, index: number) => (
 				<Item key={index} item={item} />
 			))}
 			</div>
@@ -43,7 +48,8 @@ class List extends React.Component<IProps, IState> {
 
 const mapStateToProps = (state: IGlobalState) => {
     return {
-		findedItems: state.findedItems
+		findedItems: state.findedItems,
+		isLoading: state.isLoading
     };
 }
 
