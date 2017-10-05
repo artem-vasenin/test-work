@@ -7,11 +7,14 @@ interface IProps {
 	searchValue: string;
 	findedItems: string[];
 	isLoading: boolean;
+	isError: boolean;
+	list: string[];
 }
 
 interface IState {
 	searchValue: string;
 	findedItems: string[];
+	list: string[];
 }
 
 class List extends React.Component<IProps, IState> {
@@ -19,14 +22,16 @@ class List extends React.Component<IProps, IState> {
 		super(props);
 		this.state = {
 			searchValue: this.props.searchValue,
-			findedItems: this.props.findedItems
+			findedItems: this.props.findedItems,
+			list: this.props.list
 		}
 	}
 
 	componentWillReceiveProps(newProps) {
 		this.setState({
 			searchValue: newProps.searchValue,
-			findedItems: newProps.findedItems
+			findedItems: newProps.findedItems,
+			list: newProps.list
 		});
 	}
 
@@ -34,6 +39,7 @@ class List extends React.Component<IProps, IState> {
 		return (
 			<div className={`block-items${!this.props.findedItems.length && !this.props.isLoading ? ' block-items--empty' : ''}`}>
 				{this.props.isLoading && <div className='load'>загрузка...</div>}
+				{this.props.isError && <div className='error'>Ошибка!</div>}
 					<ul className='list'>
 						{
 						!this.props.isLoading && this.props.findedItems.map((item: string, index: number) => (
@@ -49,7 +55,9 @@ class List extends React.Component<IProps, IState> {
 const mapStateToProps = (state: IGlobalState) => {
     return {
 		findedItems: state.findedItems,
-		isLoading: state.isLoading
+		isLoading: state.isLoading,
+		isError: state.isError,
+		list: state.list
     };
 }
 

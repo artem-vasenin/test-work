@@ -3,4 +3,5 @@ export interface IGlobalState {
 	findedItems: string[];
 	searchValue: string;
 	isLoading: boolean;
+	isError: boolean;
 }
