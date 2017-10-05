@@ -16,16 +16,18 @@ export function getList(value: string) {
 	return dispatch => {
 		dispatch({type: 'getList_BEGIN', value: value, isLoading: true});
 
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'http://cyties.test:8080/', false);
-		xhr.send();
-		if (xhr.status != 200) {
-			dispatch({type: 'getList_ERROR', value: 'нет доступа к серверу', isError: true});	
-		} else {
-			const remoteValue = JSON.parse(xhr.responseText);
-			setTimeout(() => {
-				dispatch({type: 'getList_SUCCESS', value: value, isLoading: false, isError: false, list: remoteValue});
-			}, 500);
-		}
+		fetch('http://cyties.test:8080/', {
+			method: 'post',  
+			headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"}
+		})
+		.then(function(responce: any){
+			return responce.json(); 
+		})  
+		.then(function (data) {
+			dispatch({type: 'getList_SUCCESS', value: value, isLoading: false, isError: false, list: data}); 
+		})  
+		.catch(function (error) {   
+			dispatch({type: 'getList_ERROR', value: error, isError: true});
+		});
 	}
 }
