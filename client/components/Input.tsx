@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {input, search, getList} from '../actions/actions';
+import {input, search, getList, getListAsyncAwait} from '../actions/actions';
 import {IGlobalState} from '../models';
 
 interface IProps {
@@ -55,7 +55,8 @@ const mapStateToProps = (state: IGlobalState) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onChange: (value: string) => {
-            dispatch(getList(value));
+            dispatch(getListAsyncAwait(value));
+            // dispatch(getList(value));
         }
     };
 }

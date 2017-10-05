@@ -20,9 +20,11 @@ export default function reducer(state: IGlobalState = initialState, action: any)
     break;
     case 'getList_BEGIN':
       newState.isLoading = true;
+      newState.isError = false;
     break;
     case 'getList_ERROR':
       newState.isError = true;
+      newState.isLoading = false;
     break;
     case 'getList_SUCCESS': 
 			newState.findedItems = action.list.filter((element) => {
