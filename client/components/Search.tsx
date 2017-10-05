@@ -23,8 +23,6 @@ class Search extends React.Component<IProps, IState> {
 			findedItems: [],
 			searchValue: ''
 		}
-		
-		console.log(this.state);
 	}
 
 	componentWillReceiveProps(newProps) {
