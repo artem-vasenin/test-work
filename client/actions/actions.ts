@@ -24,7 +24,9 @@ export function getList(value: string) {
 			return responce.json(); 
 		})  
 		.then(function (data) {
-			dispatch({type: 'getList_SUCCESS', value: value, isLoading: false, isError: false, list: data}); 
+			setTimeout(() => {
+				dispatch({type: 'getList_SUCCESS', value: value, isLoading: false, isError: false, list: data}); 
+			}, 500);
 		})  
 		.catch(function (error) {   
 			dispatch({type: 'getList_ERROR', value: error, isError: true});
