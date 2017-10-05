@@ -25,7 +25,7 @@ export default class App extends React.Component<IProps, IState> {
 	render() {
 		return (
 			<div className='app'>
-				<h1 className='heading'>Поиск пользователей</h1>
+				<h1 className='heading'>Поиск города</h1>
 				<Search />
 				<List />
 			</div>
