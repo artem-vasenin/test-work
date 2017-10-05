@@ -14,13 +14,12 @@ body, html {
 
 .search {
 
-}
-
-.search__field {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
+    &__field {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
 }
 
 .block-items {
@@ -28,23 +27,25 @@ body, html {
     border-radius: 2px;
     padding: 5px;
     box-sizing: border-box;
-}
-.block-items--empty {
-    display: none;
+    
+    &--empty {
+        display: none;
+    }
 }
 
 .list {
     list-style: none;
     padding: 0;
     margin: 0;
-}
-
-.list__item {
-    border-bottom: 1px solid gray;
-    padding: 5px 0;
-}
-.list__item:last-child {
-    border: none;
+    
+    &__item {
+        border-bottom: 1px solid gray;
+        padding: 5px 0;
+        
+        &:last-child {
+            border: none;
+        }
+    }
 }
 
 .error {
