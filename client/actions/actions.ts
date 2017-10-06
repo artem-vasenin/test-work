@@ -45,12 +45,23 @@ export function getListAsyncAwait(value: string) {
 			});
 
 			const data = await responce.json();
+			
+			dispatch({
+				type: 'getList_SUCCESS', 
+				value: value, 
+				isLoading: false, 
+				isError: false, 
+				list: data,
+				searchValue: value
+			}); 
 
-			setTimeout(() => {
-				dispatch({type: 'getList_SUCCESS', value: value, isLoading: false, isError: false, list: data}); 
-			}, 250);
 		} catch(e) {
-			dispatch({type: 'getList_ERROR', value: e, isError: true, isLoading: false});
+			dispatch({
+				type: 'getList_ERROR', 
+				value: e, 
+				isError: true, 
+				isLoading: false
+			});
 		}
 	}
 }

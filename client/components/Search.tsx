@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
+import {connect, Dispatch} from 'react-redux';
 import {search} from '../actions/actions';
-import {IGlobalState} from '../models';
+import {IGlobalState, actions} from '../models';
 import Input from './Input';
 
 interface IProps {
@@ -21,14 +21,14 @@ class Search extends React.Component<IProps, IState> {
 		this.state = {
 			list: [],
 			findedItems: [],
-			searchValue: ''
+			searchValue: this.props.searchValue || ''
 		}
 	}
 
 	componentWillReceiveProps(newProps) {
 		this.setState({
-			searchValue: newProps.searchValue,
-			findedItems: newProps.findedItems
+			findedItems: newProps.findedItems,
+			searchValue: newProps.searchValue
 		});
 	}
 
@@ -46,7 +46,7 @@ const mapStateToProps = (state: IGlobalState) => {
         searchValue: state.searchValue
     };
 }
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<actions>) => {
     return {
         search: (value: string) => {
             dispatch(search(value));

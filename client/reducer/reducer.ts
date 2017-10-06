@@ -30,10 +30,11 @@ export default function reducer(state: IGlobalState = initialState, action: any)
 			newState.findedItems = action.list.filter((element) => {
 				return action.value !== '' && element.toLowerCase().indexOf(action.value.toLowerCase()) >= 0;
       });
-      if(newState.list.length == 0) {
+      if(newState.list.length === 0) {
         newState.list = action.list;
       }
       newState.isLoading = false;
+      newState.searchValue = action.searchValue;
 		break;
 		default: return state;
 	}

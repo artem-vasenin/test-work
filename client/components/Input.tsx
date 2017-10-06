@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
+import {connect, Dispatch} from 'react-redux';
 import {input, search, getList, getListAsyncAwait} from '../actions/actions';
-import {IGlobalState} from '../models';
+import {IGlobalState, actions} from '../models';
 
 interface IProps {
 	searchValue: string;
@@ -16,8 +16,8 @@ class Input extends React.Component<IProps, IState> {
 	constructor(props){
 		super(props);
 		this.state = {
-			searchValue: ''
-		}
+			searchValue: this.props.searchValue		
+		};
 	}
 
 	componentWillReceiveProps(newProps) {
@@ -29,7 +29,6 @@ class Input extends React.Component<IProps, IState> {
 
 	handleInputChange = (e) => {
 		const value = e.target.value;
-		this.setState({searchValue: value});
 		this.props.onChange(value);
 	}
 
@@ -52,11 +51,10 @@ const mapStateToProps = (state: IGlobalState) => {
         searchValue: state.searchValue
     };
 }
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<actions>) => {
     return {
         onChange: (value: string) => {
             dispatch(getListAsyncAwait(value));
-            // dispatch(getList(value));
         }
     };
 }
