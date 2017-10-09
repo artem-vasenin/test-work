@@ -12,21 +12,21 @@ export default function reducer(state: IGlobalState = initialState, action: any)
 	let newState = {...state};
 
 	switch (action.type) {
-		case 'input': newState.searchValue = action.value; break;
-		case 'search': 
+		case 'INPUT': newState.searchValue = action.value; break;
+		case 'SEARCH': 
 			newState.findedItems = newState.list.filter((element) => {
 				return action.value !== '' && element.toLowerCase().indexOf(action.value.toLowerCase()) >= 0;
 			});
     break;
-    case 'getList_BEGIN':
+    case 'GETLIST_BEGIN':
       newState.isLoading = true;
       newState.isError = false;
     break;
-    case 'getList_ERROR':
+    case 'GETLIST_ERROR':
       newState.isError = true;
       newState.isLoading = false;
     break;
-    case 'getList_SUCCESS': 
+    case 'GETLIST_SUCCESS': 
 			newState.findedItems = action.list.filter((element) => {
 				return action.value !== '' && element.toLowerCase().indexOf(action.value.toLowerCase()) >= 0;
       });
