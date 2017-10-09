@@ -1,22 +1,23 @@
 import {Dispatch} from 'redux';
+import {actions} from '../models';
 
 export function input(value: string) {
 	return {
 		type: 'INPUT',
-		value: value
+		payload: value
 	};
 }
 
 export function search(value: string) {
 	return {
 		type: 'SEARCH',
-		value: value
+		payload: value
 	};
 }
 
 export function getList(value: string) {
-	return dispatch => {
-		dispatch({type: 'GETLIST_BEGIN', value: value, isLoading: true, isError: false});
+	return (dispatch: Dispatch<actions>) => {
+		dispatch({type: 'GETLIST_BEGIN', payload: value});
 
 		fetch('http://cyties.test:8080/', {
 			method: 'post',  
@@ -27,17 +28,17 @@ export function getList(value: string) {
 		})  
 		.then(function (data) {
 			setTimeout(() => {
-				dispatch({type: 'GETLIST_SUCCESS', value: value, isLoading: false, isError: false, list: data}); 
+				dispatch({type: 'GETLIST_SUCCESS', value: value, list: data}); 
 			}, 250);
 		})  
 		.catch(function (error) {   
-			dispatch({type: 'GETLIST_ERROR', value: error, isError: true, isLoading: false});
+			dispatch({type: 'GETLIST_ERROR', payload: error});
 		});
 	}
 }
 
 export function getListAsyncAwait(value: string) {
-	return async (dispatch: any) => {
+	return async (dispatch: Dispatch<actions>) => {
 		try {
 			const responce = await fetch('http://cyties.test:8080/', {
 				method: 'post',  
@@ -48,9 +49,7 @@ export function getListAsyncAwait(value: string) {
 			
 			dispatch({
 				type: 'GETLIST_SUCCESS', 
-				value: value, 
-				isLoading: false, 
-				isError: false, 
+				value: value,
 				list: data,
 				searchValue: value
 			}); 
@@ -58,9 +57,7 @@ export function getListAsyncAwait(value: string) {
 		} catch(e) {
 			dispatch({
 				type: 'GETLIST_ERROR', 
-				value: e, 
-				isError: true, 
-				isLoading: false
+				payload: e
 			});
 		}
 	}
