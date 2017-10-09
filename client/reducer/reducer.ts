@@ -25,15 +25,16 @@ export default function reducer(state: IGlobalState = initialState, action: any)
     case 'GETLIST_ERROR':
       newState.isError = true;
       newState.isLoading = false;
-    break;
-    case 'GETLIST_SUCCESS': 
+      break;
+      case 'GETLIST_SUCCESS': 
 			newState.findedItems = action.list.filter((element) => {
-				return action.value !== '' && element.toLowerCase().indexOf(action.value.toLowerCase()) >= 0;
+        return action.payload !== '' && element.toLowerCase().indexOf(action.payload.toLowerCase()) >= 0;
       });
       if(newState.list.length === 0) {
         newState.list = action.list;
       }
       newState.isLoading = false;
+      newState.isError = false;
       newState.searchValue = action.searchValue;
 		break;
 		default: return state;

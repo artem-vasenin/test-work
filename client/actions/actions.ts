@@ -47,12 +47,12 @@ export function getListAsyncAwait(value: string) {
 
 			const data = await responce.json();
 			
-			dispatch({
-				type: 'GETLIST_SUCCESS', 
-				value: value,
-				list: data,
-				searchValue: value
-			}); 
+				dispatch({
+					type: 'GETLIST_SUCCESS', 
+					payload: value,
+					list: data,
+					searchValue: value
+				}); 
 
 		} catch(e) {
 			dispatch({
